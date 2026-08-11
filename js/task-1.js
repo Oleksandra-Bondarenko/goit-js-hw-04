@@ -1,23 +1,41 @@
-// Задача 1. Пакування товарів
+// Задача 1. Пакування товарів.
 // Напиши функцію isEnoughCapacity(products, containerSize), яка обчислює, чи помістяться всі товари в контейнер при пакуванні.
-
 // Функція оголошує два параметри:
-
-// products — об’єкт, у якому ключі містять назви товарів, а їхні значення — кількість цих товарів. Наприклад, { apples: 2, grapes: 4 }.
+// products — об'єкт, у якому ключі містять назви товарів, а їхні значення — кількість цих товарів. Наприклад, { apples: 2, grapes: 4 }.
 // containerSize — число, максимальна кількість одиниць товарів, яку в себе може вмістити контейнер.
-
-// Функція має повернути результат перевірки, чи помістяться всі товари в контейнер. Тобто порахувати загальну кількість товарів в об’єкті products і повернути true, якщо вона менше або дорівнює containerSize, і false, якщо ні.
+// Функція має повернути результат перевірки, чи помістяться всі товари в контейнер. Тобто порахувати загальну кількість товарів в об'єкті products і повернути true, якщо вона менше або дорівнює containerSize, і false, якщо ні.
 
 function isEnoughCapacity(products, containerSize) {
-  const values = Object.values(products);
   let total = 0;
 
-  for (const value of values) {
-    total += value;
+  for (const product in products) {
+    total += products[product];
   }
 
   return total <= containerSize;
 }
+
+// Варіант №2:
+// function isEnoughCapacity(products, containerSize) {
+//   const values = Object.values(products);
+//   let total = 0;
+
+//   for (const value of values) {
+//     total += value;
+//   }
+
+//   return total <= containerSize;
+// }
+
+// Варіант №3:
+// function isEnoughCapacity(products, containerSize) {
+//   const totalProducts = Object.values(products).reduce(
+//     (total, quantity) => total + quantity,
+//     0
+//   );
+
+//   return totalProducts <= containerSize;
+// }
 
 console.log(isEnoughCapacity({ apples: 2, grapes: 3, carrots: 1 }, 8)); // true
 
